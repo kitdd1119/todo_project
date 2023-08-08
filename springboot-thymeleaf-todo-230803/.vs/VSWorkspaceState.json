@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\example",
+    "\\src\\main\\java\\com\\example\\my",
+    "\\src\\main\\java\\com\\example\\my\\model",
+    "\\src\\main\\java\\com\\example\\my\\model\\todo",
+    "\\src\\main\\java\\com\\example\\my\\model\\todo\\entity"
+  ],
+  "SelectedNode": "\\src\\main\\java\\com\\example\\my\\model\\todo\\entity\\TodoEntity.java",
+  "PreviewInSolutionExplorer": false
+}
