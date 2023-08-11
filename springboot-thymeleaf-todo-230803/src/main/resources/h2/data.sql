@@ -1,6 +1,7 @@
 INSERT INTO `user` (`idx`, `id`, `password`, `create_date`)
-VALUES (1, 'admin', '123', now()),
-       (2, 'test', '123', now());
+VALUES (1, 'admin', '$2a$12$ofrUBExIZcufO.7bhnC2mOC.S.3NvEeri1gpmfyAd86PiYXQdlGLi', now()),
+       (2, 'test', '$2a$12$ofrUBExIZcufO.7bhnC2mOC.S.3NvEeri1gpmfyAd86PiYXQdlGLi', now());
+      -- 비밀번호를 암호화해서 넣은 것임. 암호화된 비번은 123이다.
 
 
 INSERT INTO `user_role` (`user_idx`, `role`, `create_date`)

@@ -37,7 +37,7 @@ public class SecurityConfig {
             .permitAll()
             .requestMatchers("/admin/**", "api/*/auth/**")
             // 위에 해당하는 주소는 ADMIN 권한이 있는 사람만 접근 가능하도록 한다.
-            .hasRole("ADMIN")
+            .hasRole("ROLE_ADMIN")
             .anyRequest() // 나머지 모든 주소
             // 위에 해당하는 주소는 로그인이 되어 있어야만 접근 가능
             .authenticated()

@@ -27,31 +27,31 @@ public class AuthServiceApiV1 {
 
     private final PasswordEncoder passwordEncoder;
 
-    // public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session){
-    // Optional<UserEntity> userEntityOptional =
-    // userRepository.findByIdAndDeleteDateIsNull(dto.getUser().getId());
-    //
-    // if (userEntityOptional.isEmpty()) {
-    // throw new BadRequestException("존재하지 않는 사용자입니다.");
-    // }
-    //
-    // UserEntity userEntity = userEntityOptional.get();
-    //
-    // if (!userEntity.getPassword().equals(dto.getUser().getPassword())) {
-    // throw new BadRequestException("비밀번호가 일치하지 않습니다.");
-    // }
-    //
-    // session.setAttribute("loginUserDTO", LoginUserDTO.of(userEntity));
-    //
-    // return new ResponseEntity<>(
-    // ResponseDTO.builder()
-    // .code(0)
-    // .message("로그인에 성공하였습니다.")
-    // .build(),
-    // HttpStatus.OK
-    // );
-    //
-    // }
+    public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session){
+    Optional<UserEntity> userEntityOptional =
+    userRepository.findByIdAndDeleteDateIsNull(dto.getUser().getId());
+    
+    if (userEntityOptional.isEmpty()) {
+    throw new BadRequestException("존재하지 않는 사용자입니다.");
+    }
+    
+    UserEntity userEntity = userEntityOptional.get();
+    
+    if (!userEntity.getPassword().equals(dto.getUser().getPassword())) {
+    throw new BadRequestException("비밀번호가 일치하지 않습니다.");
+    }
+    
+    session.setAttribute("loginUserDTO", LoginUserDTO.of(userEntity));
+    
+    return new ResponseEntity<>(
+    ResponseDTO.builder()
+    .code(0)
+    .message("로그인에 성공하였습니다.")
+    .build(),
+    HttpStatus.OK
+    );
+    
+    }
 
     @Transactional
     public ResponseEntity<?> join(ReqJoinDTO dto) {

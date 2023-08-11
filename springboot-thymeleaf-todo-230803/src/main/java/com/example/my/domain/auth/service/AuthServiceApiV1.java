@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,9 @@ import java.util.Optional;
 public class AuthServiceApiV1 {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder; // PasswordConfig파일 안 BCryptPasswordEncoder 이놈이 리턴됨.
 
-    public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session){
+    public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session) {
         Optional<UserEntity> userEntityOptional = userRepository.findByIdAndDeleteDateIsNull(dto.getUser().getId());
 
         if (userEntityOptional.isEmpty()) {
@@ -32,6 +34,8 @@ public class AuthServiceApiV1 {
         }
 
         UserEntity userEntity = userEntityOptional.get();
+
+        // passwordEncoder.matches(dto.getUser().getPassword(),userEntity.getPassword());
 
         if (!userEntity.getPassword().equals(dto.getUser().getPassword())) {
             throw new BadRequestException("비밀번호가 일치하지 않습니다.");
@@ -44,8 +48,7 @@ public class AuthServiceApiV1 {
                         .code(0)
                         .message("로그인에 성공하였습니다.")
                         .build(),
-                HttpStatus.OK
-        );
+                HttpStatus.OK);
 
     }
 
@@ -58,9 +61,11 @@ public class AuthServiceApiV1 {
             throw new BadRequestException("이미 존재하는 아이디입니다.");
         }
 
+        String encodePassword = passwordEncoder.encode(dto.getUser().getPassword());
+
         UserEntity userEntityForSaving = UserEntity.builder()
                 .id(dto.getUser().getId())
-                .password(dto.getUser().getPassword())
+                .password(encodePassword)
                 .createDate(LocalDateTime.now())
                 .build();
 
@@ -71,9 +76,7 @@ public class AuthServiceApiV1 {
                         .code(0)
                         .message("회원가입에 성공하였습니다.")
                         .build(),
-                HttpStatus.OK
-        );
+                HttpStatus.OK);
     }
-
 
 }
