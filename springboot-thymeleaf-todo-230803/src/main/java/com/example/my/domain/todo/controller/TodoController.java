@@ -15,7 +15,7 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @GetMapping({"", "/"})
+    @GetMapping({ "", "/" })
     public ModelAndView todoTablePage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 

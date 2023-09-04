@@ -26,8 +26,7 @@ public class TodoControllerApiV1 {
     @PostMapping
     public ResponseEntity<?> insertTodoTableData(
             @Valid @RequestBody ReqTodoTableInsertDTO dto,
-            HttpSession session
-    ) {
+            HttpSession session) {
         return todoServiceApiV1.insertTodoTableData(dto, getLoginUserDTO(session));
     }
 
@@ -35,16 +34,14 @@ public class TodoControllerApiV1 {
     public ResponseEntity<?> updateTodoTableData(
             @PathVariable Long todoIdx,
             @Valid @RequestBody ReqTodoTableUpdateDoneYnDTO dto,
-            HttpSession session
-    ) {
+            HttpSession session) {
         return todoServiceApiV1.updateTodoTableData(todoIdx, dto, getLoginUserDTO(session));
     }
 
     @DeleteMapping("/{todoIdx}")
     public ResponseEntity<?> deleteTodoTableData(
             @PathVariable Long todoIdx,
-            HttpSession session
-    ) {
+            HttpSession session) {
         return todoServiceApiV1.deleteTodoTableData(todoIdx, getLoginUserDTO(session));
     }
 

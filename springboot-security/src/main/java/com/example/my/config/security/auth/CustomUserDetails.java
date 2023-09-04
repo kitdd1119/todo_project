@@ -34,22 +34,22 @@ public class CustomUserDetails implements UserDetails {
 
     // 이 밑의 메소드들은 아직 쓰지 않을 것이라 true로 반환하도록 해놓음.
     @Override
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired() { // 계정이 만료되었는지 확인
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked() { // 계정이 잠겼는지 확인
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
+    public boolean isCredentialsNonExpired() { // 비밀번호가 만료되었는지 확인
         return true;
     }
 
     @Override
-    public boolean isEnabled() {
+    public boolean isEnabled() { // 계정이 활성화되었는지 확인
         return true;
     }
 }

@@ -22,13 +22,13 @@ public class AuthController {
         return modelAndView;
     }
 
-//    @GetMapping("/auth/logout")
-//    public ModelAndView logout(HttpSession session) {
-//
-//        session.invalidate();
-//
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/auth/login");
-//        return modelAndView;
-//    }
+    @GetMapping("/auth/logout")
+    public ModelAndView logout(HttpSession session) {
+
+        session.invalidate();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/auth/login");
+        return modelAndView;
+    }
 }

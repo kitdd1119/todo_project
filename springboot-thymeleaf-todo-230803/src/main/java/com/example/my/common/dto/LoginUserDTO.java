@@ -32,17 +32,24 @@ public class LoginUserDTO {
         private String password;
         private List<String> roleList;
 
+        // public static User fromEntity(UserEntity userEntity) {
+        // return User.builder()
+        // .idx(userEntity.getIdx())
+        // .id(userEntity.getId())
+        // .password(userEntity.getPassword())
+        // .roleList(
+        // userEntity.getUserRoleEntityList()
+        // .stream()
+        // .map(userRoleEntity -> userRoleEntity.getRole())
+        // .toList()
+        // )
+        // .build();
+        // }
         public static User fromEntity(UserEntity userEntity) {
             return User.builder()
                     .idx(userEntity.getIdx())
                     .id(userEntity.getId())
                     .password(userEntity.getPassword())
-                    .roleList(
-                            userEntity.getUserRoleEntityList()
-                                    .stream()
-                                    .map(userRoleEntity -> userRoleEntity.getRole())
-                                    .toList()
-                    )
                     .build();
         }
     }
